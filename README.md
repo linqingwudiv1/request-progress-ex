@@ -21,7 +21,7 @@ Tracks the download progress of a request made with [request](https://github.com
 
 ## Installation
 
-`$ npm install request-progress`
+`$ npm install request-progress-ex`
 
 
 ## Usage
@@ -35,7 +35,12 @@ var progress = require('request-progress');
 progress(request('https://az412801.vo.msecnd.net/vhd/VMBuild_20141027/VirtualBox/IE11/Windows/IE11.Win8.1.For.Windows.VirtualBox.zip'), {
     // throttle: 2000,                    // Throttle the progress event to 2000ms, defaults to 1000ms
     // delay: 1000,                       // Only start to emit after 1000ms delay, defaults to 0ms
-    // lengthHeader: 'x-transfer-length'  // Length header to use, defaults to content-length
+    // lengthHeader: 'x-transfer-length'  // Length header to use, defaults to content-length,
+    // bRetainData : true                 // Whether retain Data while previous 'progress' event of revice data, defaults is false
+})
+.on('response', function()
+{
+    
 })
 .on('progress', function (state) {
     // The state is an object that looks like this:
@@ -45,11 +50,13 @@ progress(request('https://az412801.vo.msecnd.net/vhd/VMBuild_20141027/VirtualBox
     //     size: {
     //         total: 90044871,        // The total payload size in bytes
     //         transferred: 27610959   // The transferred payload size in bytes
+    //         previousTransfer: 654732// The previousTransfer record receive data size  while previous 'progress' event in bytes
     //     },
     //     time: {
     //         elapsed: 36.235,        // The total elapsed seconds since the start (3 decimals)
     //         remaining: 81.403       // The remaining seconds to finish (3 decimals)
-    //     }
+    //     },
+    //     data: []                    // the data retain Data while previous 'progress' event  if bRetainData is true
     // }
     console.log('progress', state);
 })
@@ -58,6 +65,10 @@ progress(request('https://az412801.vo.msecnd.net/vhd/VMBuild_20141027/VirtualBox
 })
 .on('end', function () {
     // Do something after request finishes
+})
+.on('complete', function ()
+{
+    //
 })
 .pipe(fs.createWriteStream('IE11.Win8.1.For.Windows.VirtualBox.zip'));
 ```

@@ -1,21 +1,21 @@
 {
-  "name": "request-progress",
-  "version": "3.0.0",
+  "name": "request-progress-ex",
+  "version": "4.0.0",
   "description": "Tracks the download progress of a request made with mikeal/request, giving insight of various metrics including progress percent, download speed and time remaining",
   "main": "index.js",
   "dependencies": {
     "throttleit": "^1.0.0"
   },
   "devDependencies": {
-    "coveralls": "^2.11.6",
+    "coveralls": "^3.0.9",
     "expect.js": "^0.3.1",
-    "istanbul": "^0.4.1",
-    "mocha": "^3.0.2"
+    "nyc": "^15.0.0",
+    "mocha": "^6.2.2"
   },
   "scripts": {
     "test": "mocha --bail",
-    "test-cov": "istanbul cover --dir test/coverage _mocha -- --bail && echo open test/coverage/lcov-report/index.html",
-    "test-travis": "istanbul cover _mocha --report lcovonly -- --bail && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "test-cov": "nyc cover --dir test/coverage _mocha -- --bail && echo open test/coverage/lcov-report/index.html",
+    "test-travis": "nyc cover _mocha --report lcovonly -- --bail && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "repository": {
     "type": "git",

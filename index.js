@@ -28,8 +28,10 @@ function onResponse(context, response) {
         percent: null,
         size: {
             total: Number(response.headers[context.options.lengthHeader]) || null,
-            transferred: 0
-        }
+            transferred: 0,
+            previousTransfer: 0
+        },
+        data :null
     };
 
     // Delay the progress report
@@ -40,6 +42,12 @@ function onResponse(context, response) {
 
 function onData(context, data) {
     context.state.size.transferred += data.length;
+    context.state.size.previousTransfer += data.length;
+    
+    if ( context.options.bRetainData )
+    {
+        context.state.data = context.state.data === null ? data : Buffer.concat([context.state.data, data]);
+    }
 
     !context.delayTimer && context.reportState();
 }
@@ -52,6 +60,16 @@ function onEnd(context) {
     }
 
     context.request.progressState = context.request.progressContext = null;
+}
+
+function EmitProgress(context,state)
+{
+    context.request.emit('progress', state);
+    state.size.previousTransfer = 0;
+    if (state.data)
+    {
+        state.data = null;
+    }
 }
 
 function reportState(context) {
@@ -79,8 +97,7 @@ function reportState(context) {
             state.time.remaining = Math.round(state.time.remaining * 1000) / 1000;  // Round to 4 decimals
         }
     }
-
-    context.request.emit('progress', state);
+    EmitProgress(context,state);
 }
 
 
@@ -100,6 +117,7 @@ function requestProgress(request, options) {
     options.throttle = options.throttle == null ? 1000 : options.throttle;
     options.delay = options.delay || 0;
     options.lengthHeader = options.lengthHeader || 'content-length';
+    options.bRetainData = options.bRetainData || false;
 
     // Create context
     context = {};
