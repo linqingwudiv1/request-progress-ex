@@ -6,12 +6,12 @@ declare module 'request-progress-ex'
 {
     import request from "request";
 
-    export default function process(request:any, opt:RequestProgressOptions):RequestProgress;
+    export default function process(request:any, opt?:RequestProgressOptions):RequestProgress;
 
     /**
      * 
      */
-    interface RequestProgress extends request.Request
+    export interface RequestProgress extends request.Request
     {
         /**
          * 
@@ -71,7 +71,7 @@ declare module 'request-progress-ex'
     /**
      * 
      */
-    interface RequestProgressContext
+    export interface RequestProgressContext
     {
         //
         request:RequestProgress;
@@ -81,24 +81,25 @@ declare module 'request-progress-ex'
         state:RequestProgressState;
     }
 
-    interface RequestProgressOptions
+    export interface RequestProgressOptions
     {
-        // Throttle the progress event, defaults to 1000ms
-        throttle: 1000;
-        // Only start to emit after XXXms delay, defaults to 0ms           
-        delay: 0;
-        // Length header to use                    
-        lengthHeader: 'content-length';
+        // Throttle the progress event, defaults to 1000(ms)
+        throttle?:number;
+        // Only start to emit after XXXms delay, defaults to 0 (ms)           
+        delay?:number;
+        // Length header to use, defaults is  'content-length'                    
+        lengthHeader?:string;
         // Whether retain Data on the progress event of previous revice data, defaults is false
-        bRetainData:false ;         
+        bRetainData?:boolean ;         
     }
 
-    interface RequestProgressState
+    export interface RequestProgressState
     {
         /**
          * Overall percent (between 0 to 1)
          */
         percent:number;
+        
         /**
          * The download speed in bytes/sec
          */
