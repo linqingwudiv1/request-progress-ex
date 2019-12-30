@@ -1,6 +1,6 @@
 # request-progress-ex
 
- some context parameters and support ts
+addition some context parameters and support ts
 
 Tracks the download progress of a request made with [request](https://github.com/mikeal/request), giving insight of various metrics including progress percentage, download speed and time remaining.
 
@@ -54,10 +54,15 @@ progress(request('https://az412801.vo.msecnd.net/vhd/VMBuild_20141027/VirtualBox
 })
 .on('complete', function ()
 {
-    //
+    //Do something after request complete
 })
-.pipe(fs.createWriteStream('IE11.Win8.1.For.Windows.VirtualBox.zip'));
+.pipe(fs.createWriteStream('IE11.Win8.1.For.Windows.VirtualBox.zip'))
+.on('finish',function()
+{
+    //do something after io stream finishes
+});
 ```
+
 
 If the request's response does not include the `content-length` header, the values of some metrics will be `null`.
 Also `speed` and `time.remaining` will be `null` until it can be calculated.
