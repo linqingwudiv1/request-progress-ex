@@ -15,7 +15,7 @@ Tracks the download progress of a request made with [request](https://github.com
 ```js
 var fs = require('fs');
 var request = require('request');
-var progress = require('request-progress');
+var progress = require('request-progress-ex');
 
 // The options argument is optional so you can omit it
 progress(request('https://az412801.vo.msecnd.net/vhd/VMBuild_20141027/VirtualBox/IE11/Windows/IE11.Win8.1.For.Windows.VirtualBox.zip'), {
