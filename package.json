@@ -3,7 +3,10 @@
   "version": "4.0.0",
   "description": "Tracks the download progress of a request made with mikeal/request, giving insight of various metrics including progress percent, download speed and time remaining",
   "main": "index.js",
+  "types": "index.d.ts",
   "dependencies": {
+    "@types/request": "^2.48.4",
+    "request": "^2.88.0",
     "throttleit": "^1.0.0"
   },
   "devDependencies": {
@@ -19,10 +22,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/IndigoUnited/node-request-progress"
+    "url": "https://github.com/linqingwudiv1/request-progress-ex"
   },
   "bugs": {
-    "url": "http://github.com/IndigoUnited/node-request-progress/issues"
+    "url": "http://github.com/linqingwudiv1/request-progress-ex/issues"
   },
   "keywords": [
     "progress",
@@ -36,6 +39,6 @@
     "eta",
     "etr"
   ],
-  "author": "IndigoUnited <hello@indigounited.com> (http://indigounited.com)",
+  "author": "qqq",
   "license": "MIT"
 }

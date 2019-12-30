@@ -1,20 +1,6 @@
-# request-progress
+# request-progress-ex
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependency status][david-dm-image]][david-dm-url] [![Dev Dependency status][david-dm-dev-image]][david-dm-dev-url] [![Greenkeeper badge][greenkeeper-image]][greenkeeper-url]
-
-[npm-url]:https://npmjs.org/package/request-progress
-[downloads-image]:http://img.shields.io/npm/dm/request-progress.svg
-[npm-image]:http://img.shields.io/npm/v/request-progress.svg
-[travis-url]:https://travis-ci.org/IndigoUnited/node-request-progress
-[travis-image]:http://img.shields.io/travis/IndigoUnited/node-request-progress/master.svg
-[coveralls-url]:https://coveralls.io/r/IndigoUnited/node-request-progress
-[coveralls-image]:https://img.shields.io/coveralls/IndigoUnited/node-request-progress/master.svg
-[david-dm-url]:https://david-dm.org/IndigoUnited/node-request-progress
-[david-dm-image]:https://img.shields.io/david/IndigoUnited/node-request-progress.svg
-[david-dm-dev-url]:https://david-dm.org/IndigoUnited/node-request-progress?type=dev
-[david-dm-dev-image]:https://img.shields.io/david/dev/IndigoUnited/node-request-progress.svg
-[greenkeeper-image]:https://badges.greenkeeper.io/IndigoUnited/node-request-progress.svg
-[greenkeeper-url]:https://greenkeeper.io/
+ some context parameters and support ts
 
 Tracks the download progress of a request made with [request](https://github.com/mikeal/request), giving insight of various metrics including progress percentage, download speed and time remaining.
 
@@ -36,7 +22,7 @@ progress(request('https://az412801.vo.msecnd.net/vhd/VMBuild_20141027/VirtualBox
     // throttle: 2000,                    // Throttle the progress event to 2000ms, defaults to 1000ms
     // delay: 1000,                       // Only start to emit after 1000ms delay, defaults to 0ms
     // lengthHeader: 'x-transfer-length'  // Length header to use, defaults to content-length,
-    // bRetainData : true                 // Whether retain Data while previous 'progress' event of revice data, defaults is false
+    // bRetainData : true                 // Whether retain Data on the progress event of previous revice data, defaults is false
 })
 .on('response', function()
 {
