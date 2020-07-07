@@ -1,6 +1,6 @@
 # request-progress-ex
 
-addition some context parameters and support ts
+extend some context parameters and support ts
 
 Tracks the download progress of a request made with [request](https://github.com/mikeal/request), giving insight of various metrics including progress percentage, download speed and time remaining.
 
